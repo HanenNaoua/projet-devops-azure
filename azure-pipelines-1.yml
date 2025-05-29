@@ -1,0 +1,53 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- projet-devops-azure
+
+pool:
+  name: Defaul
+
+steps:
+
+# 1 Checkout du code
+- checkout: self
+  fetchDepth: 0
+# 2 Installer Node.js 20
+- task: UseNode@1
+  inputs:
+    version: '20.x'
+  displayName: 'Use Node.js 20'
+
+# 3 Installer Angular CLI et les dépendances du projet
+- script: |
+    echo "Installation de Angular CLI et des dépendances"
+    npm install -g @angular/cli@16 
+    npm install 
+    ng version 
+  displayName: 'Install Angular CLI and dependencies'
+
+# 4 Build du projet Angular
+- script: |
+    echo "Build du frontend en mode production"
+    npm run build -- --configuration=production
+  displayName: 'Build Angular Project'
+
+# 5 Préparer l’analyse SonarCloud
+- task: SonarCloudPrepare@3
+  inputs:
+    SonarCloud: 'Sonar'
+    organization: 'hanennaoua'
+    projectKey: 'hanennaoua_4arcticDevops'
+    projectName: '4arcticDevops'
+    scannerMode: 'CLI'
+    extraProperties: |
+      sonar.projectKey=hanennaoua_4arcticDevops
+      sonar.organization=hanennaoua
+      sonar.host.url=https://sonarcloud.io
+      sonar.sources=
+
+# 6 Exécuter l'analyse SonarCloud
+- task: SonarCloudAnalyze@3
+  displayName: 'Run SonarCloud Analysis'
