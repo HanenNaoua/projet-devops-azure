@@ -30,19 +30,14 @@ steps:
     version: '20.x'
   displayName: 'Use Node.js 20'
 
-# 3 Installer Angular CLI et les dépendances du projet
+# 4 Installer Angular CLI et les dépendances du projet
 - script: |
     echo "Installation de Angular CLI et des dépendances"
+    cd $(Build.SourcesDirectory)/angular-app-kubernetes
     npm install -g @angular/cli@16 
     npm install 
     ng version 
   displayName: 'Install Angular CLI and dependencies'
-
-# 4 Build du projet Angular
-- script: |
-    echo "Build du frontend en mode production"
-    npm run build -- --configuration=production
-  displayName: 'Build Angular Project'
 
 # 5 Préparer l’analyse SonarCloud
 - task: SonarCloudPrepare@3
@@ -58,6 +53,13 @@ steps:
       sonar.host.url=https://sonarcloud.io
       sonar.sources=
 
-# 6 Exécuter l'analyse SonarCloud
+# 6 Build du projet Angular
+- script: |
+    echo "Build du frontend en mode production"
+    cd $(Build.SourcesDirectory)/angular-app-kubernetes
+    npm run build -- --configuration=production
+  displayName: 'Build Angular Project'
+
+# 7 Exécuter l'analyse SonarCloud
 - task: SonarCloudAnalyze@3
   displayName: 'Run SonarCloud Analysis'
