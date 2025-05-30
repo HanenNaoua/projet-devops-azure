@@ -46,6 +46,13 @@ steps:
     ng version 
   displayName: 'Install Angular CLI and dependencies'
 
+# 6 Build du projet Angular
+- script: |
+    echo "Build du frontend en mode production"
+    cd $(Build.SourcesDirectory)/angular-app-kubernetes
+    npm run build -- --configuration=production
+  displayName: 'Build Angular Project'
+  
 # 5 Préparer l’analyse SonarCloud
 - task: SonarCloudPrepare@3
   inputs:
@@ -60,12 +67,6 @@ steps:
       sonar.host.url=https://sonarcloud.io
       sonar.sources=
 
-# 6 Build du projet Angular
-- script: |
-    echo "Build du frontend en mode production"
-    cd $(Build.SourcesDirectory)/angular-app-kubernetes
-    npm run build -- --configuration=production
-  displayName: 'Build Angular Project'
 
 # 7 Exécuter l'analyse SonarCloud
 - task: SonarCloudAnalyze@3
