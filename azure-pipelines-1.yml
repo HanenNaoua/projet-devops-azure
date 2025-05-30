@@ -40,7 +40,8 @@ steps:
     echo "Installation de Angular CLI et des dépendances"
     cd $(Build.SourcesDirectory)/angular-app-kubernetes
     npm install -g @angular/cli@16 
-    npm install 
+    npm install || exit 1
+    ls node_modules
     ng version 
   displayName: 'Install Angular CLI and dependencies'
 
