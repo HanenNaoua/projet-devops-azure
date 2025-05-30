@@ -7,8 +7,8 @@ trigger:
 - projet-devops-azure
 
 pool:
-  #name: Default
-  vmImage: 'ubuntu-latest'
+  name: Default
+  #vmImage: 'ubuntu-latest'
 
 steps:
 
@@ -19,10 +19,14 @@ steps:
   
 # 2 Vérifier l'existence de package.json
 - script: |
-    if [ ! -f "$(Build.SourcesDirectory)/angular-app-kubernetes/package.json" ]; then
-      echo "Erreur :package.json introuvable !"
-      exit 1
-    fi
+    IF NOT EXIST "$(Build.SourcesDirectory)\angular-app-kubernetes\package.json" (
+      echo Erreur : package.json introuvable !
+      EXIT /B 1
+    )
+   # if [ ! -f "$(Build.SourcesDirectory)/angular-app-kubernetes/package.json" ]; then
+    #  echo "Erreur :package.json introuvable !"
+     # exit 1
+    #fi
   displayName: "Vérifier l'existence de package.json"
 
 # 3 Installer Node.js 20
