@@ -42,6 +42,7 @@ steps:
     npm install -g @angular/cli@16 
     npm install || exit 1
     ls node_modules
+    npm install --save-dev @angular-devkit/build-angular
     ng version 
   displayName: 'Install Angular CLI and dependencies'
 
