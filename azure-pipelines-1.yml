@@ -7,7 +7,7 @@ trigger:
 - projet-devops-azure
 
 pool:
-  name: Defaul
+  name: Default
 
 steps:
 
@@ -37,13 +37,13 @@ steps:
 # 5 Préparer l’analyse SonarCloud
 - task: SonarCloudPrepare@3
   inputs:
-    SonarCloud: 'Sonar'
+    SonarCloud: 'SonarCloudServiceConnection'
     organization: 'hanennaoua'
-    projectKey: 'hanennaoua_4arcticDevops'
-    projectName: '4arcticDevops'
+    projectKey: 'hanennaoua_DEVOPS-AZURE'
+    projectName: 'DEVOPS-AZURE'
     scannerMode: 'CLI'
     extraProperties: |
-      sonar.projectKey=hanennaoua_4arcticDevops
+      sonar.projectKey=hanennaoua_DEVOPS-AZURE
       sonar.organization=hanennaoua
       sonar.host.url=https://sonarcloud.io
       sonar.sources=
