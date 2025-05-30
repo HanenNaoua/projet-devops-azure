@@ -39,6 +39,7 @@ steps:
 - script: |
     echo "Installation de Angular CLI et des dépendances"
     cd $(Build.SourcesDirectory)/angular-app-kubernetes
+    rm -rf node_modules package-lock.json
     npm install -g @angular/cli@16 
     npm install || exit 1
     ls node_modules
