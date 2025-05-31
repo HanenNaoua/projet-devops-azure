@@ -74,6 +74,12 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Forcer l’installation de @angular/core et rxjs'
 
+          - script: |
+              echo "🔎 Recherche de angular.json"
+              dir /s /b angular.json
+            workingDirectory: $(Build.SourcesDirectory)
+            displayName: '🔎 Vérifier la présence de angular.json'
+
           # 📌 Étape 8 : Construire l’application Angular
           - script: |
               echo "⚙️ Construire l’application Angular"
