@@ -31,4 +31,8 @@ stages:
                 sonar.organization=hanennaoua
                 sonar.host.url=https://sonarcloud.io
                 sonar.sources=.
-
+          # 📌 Étape 2 : Installer Node.js
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.x'
+            displayName: 'Installer Node.js 12'
