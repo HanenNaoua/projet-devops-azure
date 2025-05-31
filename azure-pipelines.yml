@@ -7,15 +7,28 @@ trigger:
 - projet-devops-azure
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default  
+  #demands:
+   # - Agent.Name -equals AgentDevops 
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+stages:
+  - stage: Build
+    displayName: "🔧 Construction"
+    jobs:
+      - job: Build_App
+        displayName: "📦 Build de l'application"
+        steps:
+          # 📌 Étape 1 : Préparer l'analyse SonarCloud
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'SonarCloudServiceConnection'
+              organization: 'hanennaoua'
+              projectKey: 'hanennaoua_DEVOPS-AZURE'
+              projectName: 'DEVOPS-AZURE'
+              scannerMode: 'CLI'
+              extraProperties: |
+                sonar.projectKey=hanennaoua_DEVOPS-AZURE
+                sonar.organization=hanennaoua
+                sonar.host.url=https://sonarcloud.io
+                sonar.sources=.
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
