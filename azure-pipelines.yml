@@ -62,6 +62,8 @@ stages:
           #- script: |
            #   echo "🔍 Vérification de @angular/core et rxjs"
             #  npm list @angular/core rxjs || true
+            #  shell: bash
+
             #workingDirectory: $(Build.SourcesDirectory)
             #displayName: 'Vérifier @angular/core et rxjs'
 
