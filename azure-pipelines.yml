@@ -76,7 +76,7 @@ stages:
 
           # 📌 Étape 8 : Construire l’application Angular
           - script: |
-              echo "⚙️ Désactivation temporaire des erreurs TypeScript strictes"
-              ng build --configuration production --aot=false --build-optimizer=false
+              echo "⚙️ Construire l’application Angular"
+              ng build --configuration production
             workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Construire l’application Angular'
