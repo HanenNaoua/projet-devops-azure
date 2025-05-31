@@ -59,11 +59,11 @@ stages:
             displayName: 'Installer Angular CLI'
 
           # 📌 Étape 6 : Vérifier les versions
-          - script: |
-              echo "🔍 Vérification de @angular/core et rxjs"
-              npm list @angular/core rxjs || true
-            workingDirectory: $(Build.SourcesDirectory)
-            displayName: 'Vérifier @angular/core et rxjs'
+          #- script: |
+           #   echo "🔍 Vérification de @angular/core et rxjs"
+            #  npm list @angular/core rxjs || true
+            #workingDirectory: $(Build.SourcesDirectory)
+            #displayName: 'Vérifier @angular/core et rxjs'
 
           # 📌 Étape 7 : Forcer l’installation de @angular/core et rxjs
           - script: |
