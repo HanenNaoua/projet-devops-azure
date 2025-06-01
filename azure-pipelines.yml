@@ -83,6 +83,7 @@ stages:
           # 📌 Étape 8 : Construire l’application Angular
           - script: |
               echo "⚙️ Construire l’application Angular"
+              cd $(Build.SourcesDirectory)/angular-app-kubernetes
               ng build --configuration production
             workingDirectory: $(Build.SourcesDirectory)
             displayName: 'Construire l’application Angular'
