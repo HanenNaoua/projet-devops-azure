@@ -29,11 +29,11 @@ steps:
     #fi
   displayName: "Vérifier l'existence de package.json"
 
-# 3 Installer Node.js 20
+# 3 Installer Node.js 18
 - task: UseNode@1
   inputs:
-    version: '12.x'
-  displayName: 'Installer Node.js 12'
+    version: '18.x'
+  displayName: 'Installer Node.js 18'
 
 # 4 Installer Angular CLI et les dépendances du projet
 - script: |
