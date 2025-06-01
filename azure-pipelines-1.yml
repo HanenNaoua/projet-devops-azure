@@ -36,23 +36,46 @@ steps:
   displayName: 'Installer Node.js 18'
 
 # 4 Installer Angular CLI et les dépendances du projet
+#- script: |
+ #   echo "Installation de Angular CLI et des dépendances"
+  #  cd $(Build.SourcesDirectory)/angular-app-kubernetes
+   # rm -rf node_modules package-lock.json
+    #npm install -g @angular/cli@16 
+    #npm install || exit 1
+    #ls node_modules
+    #npm install --save-dev @angular-devkit/build-angular
+    #ng version 
+  #displayName: 'Install Angular CLI and dependencies'
+  
+  # 📌 Étape 4 : Installer Angular CLI et les dépendances du projet (Windows compatible)
 - script: |
     echo "Installation de Angular CLI et des dépendances"
-    cd $(Build.SourcesDirectory)/angular-app-kubernetes
-    rm -rf node_modules package-lock.json
-    npm install -g @angular/cli@16 
-    npm install || exit 1
-    ls node_modules
-    npm install --save-dev @angular-devkit/build-angular
-    ng version 
+    cd $(Build.SourcesDirectory)\angular-app-kubernetes
+    IF EXIST node_modules (rmdir /S /Q node_modules)
+    IF EXIST package-lock.json (del /F /Q package-lock.json)
+    call npm install -g @angular/cli@16
+    call npm install || exit /b 1
+    dir node_modules
+    call npm install --save-dev @angular-devkit/build-angular
+    call ng version
   displayName: 'Install Angular CLI and dependencies'
+  workingDirectory: $(Build.SourcesDirectory)
+
 
 # 6 Build du projet Angular
+#- script: |
+ #   echo "Build du frontend en mode production"
+  #  cd $(Build.SourcesDirectory)/angular-app-kubernetes
+   # ng build --configuration production
+  #displayName: 'Build Angular Project'
+
+# 📌 Étape 6 : Build du projet Angular (compatible Windows agent)
 - script: |
     echo "Build du frontend en mode production"
-    cd $(Build.SourcesDirectory)/angular-app-kubernetes
-    ng build --configuration production
+    cd $(Build.SourcesDirectory)\angular-app-kubernetes
+    call ng build --configuration production
   displayName: 'Build Angular Project'
+  workingDirectory: $(Build.SourcesDirectory)
   
 # 5 Préparer l’analyse SonarCloud
 - task: SonarCloudPrepare@3
