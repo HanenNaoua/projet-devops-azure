@@ -82,11 +82,11 @@ steps:
   inputs:
     SonarCloud: 'SonarCloudServiceConnection'
     organization: 'hanennaoua'
-    projectKey: 'hanennaoua_DEVOPS-AZURE'
+    projectKey: 'HanenNaoua_projet-devops-azure'
     projectName: 'DEVOPS-AZURE'
     scannerMode: 'CLI'
     extraProperties: |
-      sonar.projectKey=hanennaoua_DEVOPS-AZURE
+      sonar.projectKey=HanenNaoua_projet-devops-azure
       sonar.organization=hanennaoua
       sonar.host.url=https://sonarcloud.io
       sonar.sources=
