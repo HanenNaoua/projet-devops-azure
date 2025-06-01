@@ -32,8 +32,8 @@ steps:
 # 3 Installer Node.js 20
 - task: UseNode@1
   inputs:
-    version: '20.x'
-  displayName: 'Use Node.js 20'
+    version: '12.x'
+  displayName: 'Installer Node.js 12'
 
 # 4 Installer Angular CLI et les dépendances du projet
 - script: |
@@ -51,7 +51,7 @@ steps:
 - script: |
     echo "Build du frontend en mode production"
     cd $(Build.SourcesDirectory)/angular-app-kubernetes
-    npm run build -- --configuration=production
+    ng build --configuration production
   displayName: 'Build Angular Project'
   
 # 5 Préparer l’analyse SonarCloud
