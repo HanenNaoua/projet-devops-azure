@@ -68,17 +68,17 @@ stages:
             #displayName: 'Vérifier @angular/core et rxjs'
 
           # 📌 Étape 7 : Forcer l’installation de @angular/core et rxjs
-          - script: |
-              echo "🚀 Forçage de l'installation de @angular/core et rxjs"
-              npm install @angular/core@6.0.3 rxjs@6.0.0 --legacy-peer-deps
-            workingDirectory: $(Build.SourcesDirectory)
-            displayName: 'Forcer l’installation de @angular/core et rxjs'
+          #- script: |
+              #echo "🚀 Forçage de l'installation de @angular/core et rxjs"
+             # npm install @angular/core@6.0.3 rxjs@6.0.0 --legacy-peer-deps
+            #workingDirectory: $(Build.SourcesDirectory)
+           # displayName: 'Forcer l’installation de @angular/core et rxjs'
 
-          - script: |
-              echo "🔎 Recherche de angular.json"
-              dir /s /b angular.json
-            workingDirectory: $(Build.SourcesDirectory)
-            displayName: '🔎 Vérifier la présence de angular.json'
+          #- script: |
+              #echo "🔎 Recherche de angular.json"
+             # dir /s /b angular.json
+            #workingDirectory: $(Build.SourcesDirectory)
+           # displayName: '🔎 Vérifier la présence de angular.json'
 
           # 📌 Étape 8 : Construire l’application Angular
           - script: |
