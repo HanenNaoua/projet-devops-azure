@@ -10,7 +10,6 @@ pool:
   name: Default
 
 steps:
-
 # 1 Checkout du code
 - checkout: self
   clean: true
@@ -70,3 +69,4 @@ steps:
 # 7 Exécuter l'analyse SonarCloud
 - task: SonarCloudAnalyze@3
   displayName: 'Run SonarCloud Analysis'
+  
