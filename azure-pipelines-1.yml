@@ -8,7 +8,6 @@ trigger:
 
 pool:
   name: Default
-  #vmImage: 'ubuntu-latest'
 
 steps:
 
@@ -23,10 +22,6 @@ steps:
       echo Erreur : package.json introuvable !
       EXIT /B 1
     )
-   # if [ ! -f "$(Build.SourcesDirectory)/angular-app-kubernetes/package.json" ]; then
-    #  echo "Erreur :package.json introuvable !"
-     # exit 1
-    #fi
   displayName: "Vérifier l'existence de package.json"
 
 # 3 Installer Node.js 18
@@ -34,18 +29,6 @@ steps:
   inputs:
     version: '18.x'
   displayName: 'Installer Node.js 18'
-
-# 4 Installer Angular CLI et les dépendances du projet
-#- script: |
- #   echo "Installation de Angular CLI et des dépendances"
-  #  cd $(Build.SourcesDirectory)/angular-app-kubernetes
-   # rm -rf node_modules package-lock.json
-    #npm install -g @angular/cli@16 
-    #npm install || exit 1
-    #ls node_modules
-    #npm install --save-dev @angular-devkit/build-angular
-    #ng version 
-  #displayName: 'Install Angular CLI and dependencies'
   
   # 📌 Étape 4 : Installer Angular CLI et les dépendances du projet (Windows compatible)
 - script: |
@@ -60,14 +43,6 @@ steps:
     call ng version
   displayName: 'Install Angular CLI and dependencies'
   workingDirectory: $(Build.SourcesDirectory)
-
-
-# 6 Build du projet Angular
-#- script: |
- #   echo "Build du frontend en mode production"
-  #  cd $(Build.SourcesDirectory)/angular-app-kubernetes
-   # ng build --configuration production
-  #displayName: 'Build Angular Project'
 
 # 📌 Étape 6 : Build du projet Angular (compatible Windows agent)
 - script: |
