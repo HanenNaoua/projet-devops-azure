@@ -1,0 +1,56 @@
+trigger:
+- projet-devops-azure  # ou ta branche réelle
+
+pool:
+  name: Default
+
+steps:
+- checkout: self
+  clean: true
+  persistCredentials: true
+
+- script: |
+    IF NOT EXIST "$(Build.SourcesDirectory)\angular-app-kubernetes\package.json" (
+      echo Erreur : package.json introuvable !
+      EXIT /B 1
+    )
+  displayName: "Vérifier l'existence de package.json"
+
+- task: UseNode@1
+  inputs:
+    version: '18.x'
+  displayName: 'Installer Node.js 18'
+
+- script: |
+    cd $(Build.SourcesDirectory)\angular-app-kubernetes
+    call npm install -g @angular/cli@16
+    call npm install || exit /b 1
+    call npm install --save-dev @angular-devkit/build-angular
+    call ng version
+  displayName: 'Install Angular CLI and dependencies'
+
+- script: |
+    cd $(Build.SourcesDirectory)\angular-app-kubernetes
+    call ng build --configuration production
+  displayName: 'Build Angular Project'
+
+- task: SonarCloudPrepare@3
+  inputs:
+    SonarCloud: 'SonarCloudServiceConnection'
+    organization: 'hanennaoua'
+    projectKey: 'HanenNaoua_projet-devops-azure'
+    projectName: 'DEVOPS-AZURE'
+    scannerMode: 'CLI'
+    extraProperties: |
+      sonar.projectKey=HanenNaoua_projet-devops-azure
+      sonar.organization=hanennaoua
+      sonar.host.url=https://sonarcloud.io
+      sonar.sources=angular-app-kubernetes/src
+
+- task: SonarCloudAnalyze@3
+  displayName: 'Run SonarCloud Analysis'
+
+- task: SonarCloudPublish@3
+  inputs:
+    pollingTimeoutSec: '300'
+  displayName: 'Publier le rapport SonarCloud'
