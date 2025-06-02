@@ -74,3 +74,8 @@ steps:
   inputs:
     pollingTimeoutSec: '300'
   displayName: 'Publier le rapport SonarCloud'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
