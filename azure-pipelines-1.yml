@@ -70,7 +70,7 @@ steps:
 - task: SonarCloudAnalyze@3
   displayName: 'Run SonarCloud Analysis'
 
-# 8 Publier le rapport SonarCloud**
+# 8 Publier le rapport SonarCloud
 - task: SonarCloudPublish@3
   inputs:
     pollingTimeoutSec: '300'
