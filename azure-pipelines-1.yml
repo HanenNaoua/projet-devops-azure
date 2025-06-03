@@ -90,6 +90,7 @@ steps:
     containerRegistry: 'DockerHub-Connection' # Connexion Docker Hub
     repository: 'hanen90/devops-azure' # Dépôt Docker Hub
     Dockerfile: 'angular-app-kubernetes/Dockerfile' # Dockerfile situé à la racine
+    buildContext: 'angular-app-kubernetes'
     tags: 'latest' # Tag de l'image
   displayName: 'Build and Push Docker Image to Docker Hub'
 
