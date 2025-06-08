@@ -1,5 +1,5 @@
 # Étape 1 : Utiliser une image de Node.js pour construire l'application
-FROM node:18 AS build
+FROM node:20 AS build
 
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
 ENV NODE_OPTIONS=--openssl-legacy-provider
