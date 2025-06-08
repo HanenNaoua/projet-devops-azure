@@ -15,14 +15,9 @@ COPY package.json package-lock.json ./
 #RUN npm install --legacy-peer-deps
 #RUN npm install typescript@5.2.2 --save-dev
 
-RUN npm install --legacy-peer-deps && \
-    npm install typescript@5.2.2 --save-dev
-
-
 RUN rm -rf node_modules
 
-# Installer les dépendances
-RUN npm install
+RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 
 # Copier tout le reste du code source dans le conteneur
 COPY . .
