@@ -63,7 +63,7 @@ steps:
       sonar.projectKey=HanenNaoua_projet-devops-azure
       sonar.organization=hanennaoua
       sonar.host.url=https://sonarcloud.io
-      sonar.sources=
+      sonar.sources= .
 
 
 # 7 Exécuter l'analyse SonarCloud
