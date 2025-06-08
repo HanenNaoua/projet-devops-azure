@@ -85,7 +85,7 @@ steps:
 - task: Docker@2
   inputs:
     command: 'buildAndPush' # Commande pour construire et pousser l'image
-    containerRegistry: 'DockerHub-Connection' # Connexion Docker Hub
+    containerRegistry: 'DockerHub' # Connexion Docker Hub
     repository: 'hanen90/devops-azure' # Dépôt Docker Hub
     Dockerfile: 'angular-app-kubernetes/Dockerfile' # Dockerfile situé à la racine
     buildContext: 'angular-app-kubernetes'
