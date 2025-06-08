@@ -81,6 +81,14 @@ steps:
     echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_USERNAME) --password-stdin
   displayName: 'Docker login CLI'
 
+- task: Docker@2
+  displayName: 'Test pull nginx:alpine'
+  inputs:
+    command: 'pull'
+    containerRegistry: 'DockerHub-Connection'
+    repository: 'nginx'
+    tags: 'alpine'
+
 # 10 Build & Push de l'image Docker vers Docker Hub
 - task: Docker@2
   inputs:
