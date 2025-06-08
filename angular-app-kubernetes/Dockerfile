@@ -19,11 +19,16 @@ RUN rm -rf node_modules
 
 RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 
+# Vérifier les packages installés (débogage)
+RUN npm list --depth=0
+
 # Copier tout le reste du code source dans le conteneur
 COPY . .
 
 # Construire l'application Angular pour la production avec plus de détails
-RUN npm run build -- --configuration=production --verbose
+#RUN npm run build -- --configuration=production --verbose
+
+RUN npm run build --configuration=production --verbose
 
 # Vérification du contenu de /app après le build
 RUN ls -l /app
