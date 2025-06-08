@@ -1,0 +1,32 @@
+# Environnements et IDEs
+.vscode
+.idea
+*.swp
+
+# Logs et debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Git
+.git
+.gitignore
+
+# Docker lui-même
+Dockerfile
+.dockerignore
+
+# Autres fichiers inutiles au build
+*.tgz
+*.zip
+*.rar
+*.tar.gz
+.env
+.env.local
+README.md
+LICENSE
+CHANGELOG.md
+tests
+coverage

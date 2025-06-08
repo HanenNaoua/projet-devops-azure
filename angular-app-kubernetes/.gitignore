@@ -37,3 +37,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+node_modules
+dist
+.git
+.gitignore
+Dockerfile
+README.md
+npm-debug.log
+.vscode
+*.tgz
+*.log
