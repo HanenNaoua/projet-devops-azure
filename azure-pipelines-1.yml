@@ -77,11 +77,11 @@ steps:
   displayName: 'Publier le rapport SonarCloud'
 
 # 9 Connexion à Docker Hub pour tester la connexion
-- task: Docker@2
-  inputs:
-    command: 'login'
-    containerRegistry: 'DockerHub-Connection'
-  displayName: 'Login to Docker Hub'
+#- task: Docker@2
+  #inputs:
+    #command: 'login'
+   # containerRegistry: 'DockerHub-Connection'
+  #displayName: 'Login to Docker Hub'
 
 # 10 Build & Push de l'image Docker vers Docker Hub
 - task: Docker@2
