@@ -82,6 +82,9 @@ steps:
     #command: 'login'
    # containerRegistry: 'DockerHub-Connection'
   #displayName: 'Login to Docker Hub'
+- script: |
+    echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_USERNAME) --password-stdin
+  displayName: 'Docker login CLI'
 
 # 10 Build & Push de l'image Docker vers Docker Hub
 - task: Docker@2
