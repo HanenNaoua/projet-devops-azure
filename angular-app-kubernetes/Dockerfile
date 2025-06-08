@@ -10,8 +10,13 @@ WORKDIR /app
 # Copier le package.json et package-lock.json pour installer les dépendances
 COPY package.json package-lock.json ./
 
+# Installer TypeScript à une version compatible
+RUN npm install typescript@5.2.2 --save-dev
+
+RUN rm -rf node_modules
+
 # Installer les dépendances
-RUN npm install  # Installe les dépendances
+RUN npm install
 
 # Copier tout le reste du code source dans le conteneur
 COPY . .
