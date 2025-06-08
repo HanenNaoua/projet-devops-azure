@@ -63,7 +63,7 @@ steps:
       sonar.projectKey=HanenNaoua_projet-devops-azure
       sonar.organization=hanennaoua
       sonar.host.url=https://sonarcloud.io
-      sonar.sources=
+      sonar.sources= .
 
 
 # 7 Exécuter l'analyse SonarCloud
@@ -77,11 +77,6 @@ steps:
   displayName: 'Publier le rapport SonarCloud'
 
 # 9 Connexion à Docker Hub pour tester la connexion
-#- task: Docker@2
-  #inputs:
-    #command: 'login'
-   # containerRegistry: 'DockerHub-Connection'
-  #displayName: 'Login to Docker Hub'
 - script: |
     echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_USERNAME) --password-stdin
   displayName: 'Docker login CLI'
