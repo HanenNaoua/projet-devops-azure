@@ -11,7 +11,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Installer TypeScript à une version compatible
-RUN npm install typescript@5.2.2 --save-dev
+# Installer les dépendances en ignorant les peer dependencies
+#RUN npm install --legacy-peer-deps
+#RUN npm install typescript@5.2.2 --save-dev
+
+RUN npm install --legacy-peer-deps && \
+    npm install typescript@5.2.2 --save-dev
+
 
 RUN rm -rf node_modules
 
