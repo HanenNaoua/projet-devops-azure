@@ -26,7 +26,11 @@ RUN ls -l /app
 RUN ls -l /app/dist/angular-app
 
 # Étape 2 : Utiliser une image de Nginx pour héberger l'application construite
-FROM nginx:alpine
+#FROM nginx:alpine
+#FROM nginx:1.25-alpine
+FROM docker.io/library/nginx:alpine
+
+
 
 # Copier l'application Angular construite dans le répertoire de Nginx
 COPY --from=build /app/dist/angular-app /usr/share/nginx/html
