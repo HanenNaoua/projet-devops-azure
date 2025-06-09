@@ -36,7 +36,7 @@ steps:
     cd $(Build.SourcesDirectory)\angular-app-kubernetes
     IF EXIST node_modules (rmdir /S /Q node_modules)
     IF EXIST package-lock.json (del /F /Q package-lock.json)
-    call npm install -g @angular/cli@16
+    call npm install -g @angular/cli@16 rxjs@6.0.0 --legacy-peer-deps --save
     call npm install || exit /b 1
     dir node_modules
     call npm install --save-dev @angular-devkit/build-angular
