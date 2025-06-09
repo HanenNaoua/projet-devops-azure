@@ -2,7 +2,6 @@
 FROM node:16-alpine AS build
 #FROM node:16-alpine AS build
 
-
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
 #ENV NODE_OPTIONS=--openssl-legacy-provider
 
@@ -19,8 +18,6 @@ ENV NODE_OPTIONS=""
 
 # Copier le package.json et package-lock.json pour installer les dépendances
 COPY package.json package-lock.json ./
-
-
 
 #RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 
