@@ -14,7 +14,6 @@ WORKDIR /app
 
 # Nettoyage complet pour éviter les conflits de cache
 RUN rm -rf node_modules /app/node_modules /root/.npm
-RUN rm -r -fo package-lock.json
 
 ENV NODE_OPTIONS=""
 
