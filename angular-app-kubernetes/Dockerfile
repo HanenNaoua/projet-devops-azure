@@ -8,10 +8,6 @@ FROM node:16-alpine AS build
 
 # Définir le répertoire de travail
 WORKDIR /app
-
-# Copier le package.json et package-lock.json pour installer les dépendances
-COPY package.json package-lock.json ./
-
 # Installer TypeScript à une version compatible
 # Installer les dépendances en ignorant les peer dependencies
 #RUN npm install --legacy-peer-deps
@@ -20,6 +16,11 @@ COPY package.json package-lock.json ./
 RUN rm -rf node_modules package-lock.json
 
 ENV NODE_OPTIONS=""
+
+# Copier le package.json et package-lock.json pour installer les dépendances
+COPY package.json package-lock.json ./
+
+
 
 #RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 
