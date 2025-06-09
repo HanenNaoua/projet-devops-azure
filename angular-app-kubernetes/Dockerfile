@@ -1,17 +1,25 @@
 # Étape 1 : Utiliser une image de Node.js pour construire l'application
-FROM node:20 AS build
+FROM node:10 AS build
 
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
-ENV NODE_OPTIONS=--openssl-legacy-provider
+#ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Définir le répertoire de travail
 WORKDIR /app
 
+RUN npm install -g @angular/cli@6.0.8
+COPY package*.json ./
+RUN npm install rxjs@6.2.2 typescript@2.9.2 --save && npm install
+
+
+
 # Copier le package.json et package-lock.json pour installer les dépendances
-COPY package.json package-lock.json ./
+#COPY package.json package-lock.json ./
 
 # Installer les dépendances
-RUN npm install  # Installe les dépendances
+#RUN npm install  # Installe les dépendances
+#RUN npm install --legacy-peer-deps
+
 
 # Copier tout le reste du code source dans le conteneur
 COPY . .
