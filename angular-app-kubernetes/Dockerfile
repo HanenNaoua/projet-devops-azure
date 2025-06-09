@@ -12,7 +12,8 @@ WORKDIR /app
 #RUN npm install --legacy-peer-deps
 #RUN npm install typescript@5.2.2 --save-dev
 
-RUN rm -rf node_modules package-lock.json
+# Nettoyage complet pour éviter les conflits de cache
+RUN rm -rf node_modules /app/node_modules /root/.npm
 
 ENV NODE_OPTIONS=""
 
@@ -31,8 +32,8 @@ COPY . .
 
 # Construire l'application Angular pour la production avec plus de détails
 #RUN npm run build -- --configuration=production --verbose
+RUN npm run build -- --configuration=production --verbose
 
-RUN npm run build --configuration=production --verbose
 
 # Vérification du contenu de /app après le build
 RUN ls -l /app
