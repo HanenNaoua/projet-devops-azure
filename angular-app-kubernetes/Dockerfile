@@ -22,7 +22,7 @@ ENV NODE_OPTIONS=""
 
 #RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 RUN npm install --legacy-peer-deps
-COPY package.json package-lock.json ./
+COPY package.json  ./
 
 # Vérifier les packages installés (débogage)
 RUN npm list --depth=0 || true
