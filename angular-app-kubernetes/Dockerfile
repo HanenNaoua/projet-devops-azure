@@ -1,10 +1,10 @@
 # Étape 1 : Utiliser une image de Node.js pour construire l'application
-#FROM node:20 AS build
-FROM node:16-alpine AS builder
+FROM node:16-alpine AS build
+#FROM node:16-alpine AS build
 
 
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
-ENV NODE_OPTIONS=--openssl-legacy-provider
+#ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Définir le répertoire de travail
 WORKDIR /app
@@ -17,9 +17,13 @@ COPY package.json package-lock.json ./
 #RUN npm install --legacy-peer-deps
 #RUN npm install typescript@5.2.2 --save-dev
 
-RUN rm -rf node_modules
+RUN rm -rf node_modules package-lock.json
 
-RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
+ENV NODE_OPTIONS=""
+
+#RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
+
+RUN npm install --legacy-peer-deps
 
 # Vérifier les packages installés (débogage)
 RUN npm list --depth=0
