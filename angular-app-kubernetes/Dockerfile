@@ -25,7 +25,7 @@ COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 
 # Vérifier les packages installés (débogage)
-RUN npm list --depth=0
+RUN npm list --depth=0 || true
 
 # Copier tout le reste du code source dans le conteneur
 COPY . .
