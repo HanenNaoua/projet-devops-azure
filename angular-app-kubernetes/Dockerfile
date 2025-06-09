@@ -30,6 +30,8 @@ RUN npm list --depth=0
 # Copier tout le reste du code source dans le conteneur
 COPY . .
 
+RUN npm ls @ngtools/webpack || true
+
 # Construire l'application Angular pour la production avec plus de détails
 #RUN npm run build -- --configuration=production --verbose
 RUN npm run build -- --configuration=production --verbose
