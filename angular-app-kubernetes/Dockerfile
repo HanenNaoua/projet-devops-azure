@@ -5,7 +5,7 @@ FROM node:10.24.1-alpine AS build
 
 
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
-#ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Définir le répertoire de travail
 WORKDIR /app
