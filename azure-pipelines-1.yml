@@ -81,6 +81,12 @@ steps:
     echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_USERNAME) --password-stdin
   displayName: 'Docker login CLI'
 
+
+- script: |
+    echo "Cleaning NPM cache..."
+    npm cache clean --force
+  displayName: 'Clean NPM cache'
+
 # 10 Build & Push de l'image Docker vers Docker Hub
 - task: Docker@2
   inputs:
