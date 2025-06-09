@@ -25,7 +25,8 @@ RUN npm install rxjs@6.2.2 typescript@2.9.2 --save && npm install
 COPY . .
 
 # Construire l'application Angular pour la production avec plus de détails
-RUN npm run build -- --configuration=production --verbose
+#RUN npm run build -- --configuration=production --verbose
+RUN ng build --configuration=production --verbose
 
 # Vérification du contenu de /app après le build
 RUN ls -l /app
