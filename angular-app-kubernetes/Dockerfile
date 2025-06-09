@@ -1,5 +1,5 @@
 # Étape 1 : Utiliser une image de Node.js pour construire l'application
-FROM node:16-alpine AS build
+FROM node:10-alpine AS build
 #FROM node:16-alpine AS build
 
 # Fixer l'option OPENSSL_legacy_provider pour résoudre l'erreur OpenSSL
