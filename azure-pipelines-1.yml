@@ -32,6 +32,7 @@ steps:
   # Étape 4 : Installer Angular CLI et les dépendances du projet (Windows compatible)
 - script: |
     echo "Installation de Angular CLI et des dépendances"
+    set NODE_OPTIONS=--openssl-legacy-provider  # Fix pour OpenSSL
     cd $(Build.SourcesDirectory)\angular-app-kubernetes
     IF EXIST node_modules (rmdir /S /Q node_modules)
     IF EXIST package-lock.json (del /F /Q package-lock.json)
@@ -42,15 +43,6 @@ steps:
     call ng version
   displayName: 'Install Angular CLI and dependencies'
   workingDirectory: $(Build.SourcesDirectory)
-
-# 3️⃣ Installer Angular CLI et les dépendances du projet
-- script: |
-    echo "📦 Installation de Angular CLI et des dépendances"
-    set NODE_OPTIONS=--openssl-legacy-provider  # Fix pour OpenSSL (Windows utilise 'set' au lieu de 'export')
-    npm install -g @angular/cli@16  # Mise à jour vers Angular CLI 16
-    npm install  # Installation des dépendances du projet
-    ng version  # Vérification de la version d'Angular CLI
-  displayName: 'Install Angular CLI and dependencies2'
   
 # Étape 6 : Build du projet Angular (compatible Windows agent)
 - script: |
