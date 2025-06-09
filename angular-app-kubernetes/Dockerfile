@@ -20,10 +20,10 @@ RUN rm -rf node_modules /app/node_modules /root/.npm
 ENV NODE_OPTIONS=""
 
 # Copier le package.json et package-lock.json pour installer les dépendances
+COPY package*.json ./
 
 #RUN npm install --legacy-peer-deps && npm install typescript@5.2.2 --save-dev
 RUN npm install --legacy-peer-deps
-COPY package.json  ./
 
 # Vérifier les packages installés (débogage)
 RUN npm list --depth=0 || true
