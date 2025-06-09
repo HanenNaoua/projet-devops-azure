@@ -17,7 +17,7 @@ WORKDIR /app
 # Nettoyage complet pour éviter les conflits de cache
 RUN rm -rf node_modules /app/node_modules /root/.npm
 
-ENV NODE_OPTIONS=""
+#ENV NODE_OPTIONS=""
 
 # Copier le package.json et package-lock.json pour installer les dépendances
 COPY package*.json ./
