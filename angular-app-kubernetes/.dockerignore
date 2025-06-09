@@ -15,7 +15,7 @@ pnpm-debug.log*
 .gitignore
 
 # Docker lui-même
-Dockerfile
+Dockerfile1
 .dockerignore
 
 # Autres fichiers inutiles au build

@@ -41,7 +41,7 @@ node_modules
 dist
 .git
 .gitignore
-Dockerfile
+Dockerfile1
 README.md
 npm-debug.log
 .vscode
