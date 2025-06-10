@@ -23,6 +23,7 @@ RUN npx ng build --configuration=production --output-path=/app/dist/angular-app 
 
 RUN find /app -type d -name "dist"
 
+
 # Vérification du contenu du build
 #RUN ls -l /app/dist
 # Vérification du contenu de /app après le build
