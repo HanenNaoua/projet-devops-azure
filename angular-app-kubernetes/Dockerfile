@@ -1,5 +1,5 @@
 # Étape 1 : Image avec Node compatible Angular
-FROM node:10 AS build
+FROM node:20 AS build
 
 # Définir le répertoire de travail
 WORKDIR /app
