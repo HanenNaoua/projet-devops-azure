@@ -17,9 +17,9 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Construire l'application Angular
-#RUN npm run build -- --configuration=production
+#RUN npm run build -- --configuration=production --output-path=/app/dist/angular-app
 RUN npx ng version
-RUN npx ng build --configuration=production --verbose || { echo "❌ Build Angular a échoué"; exit 1; }
+RUN npx ng build --configuration=production --output-path=/app/dist/angular-app || { echo "❌ Build Angular a échoué"; exit 1; }
 
 # Vérification du contenu du build
 #RUN ls -l /app/dist
