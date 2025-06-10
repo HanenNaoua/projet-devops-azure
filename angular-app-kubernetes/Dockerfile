@@ -1,24 +1,23 @@
-FROM node:10 AS build
+# Étape 1 : Image avec Node compatible Angular
+FROM node:18 AS build
 
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Installer Angular CLI version compatible
-RUN npm install -g @angular/cli@6.0.8
-
-# Copier les fichiers package
+# Copier les fichiers nécessaires
 COPY package*.json ./
 
-# Forcer la bonne version de rxjs et typescript
-RUN npm install rxjs@6.2.2 typescript@2.9.2 --save && npm install
+# Installer Angular CLI (version compatible)
+RUN npm install -g @angular/cli@16
 
-# Copier tout le reste du code
+# Installer les dépendances (avec legacy pour les peerDeps si nécessaire)
+RUN npm install --legacy-peer-deps
+
+# Copier le reste du code
 COPY . .
 
-# Lancer le build Angular
-RUN ./node_modules/.bin/ng build --configuration=production --verbose
+# Construire l'application Angular
+RUN npm run build -- --configuration=production
 
-# Vérifier le résultat
+# Vérification du contenu du build
 RUN ls -l /app/dist
-RUN ls -l /app/dist/angular-app
-
-
