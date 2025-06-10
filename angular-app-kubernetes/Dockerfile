@@ -27,7 +27,7 @@ RUN npx ng build --configuration=production --output-path=/app/dist/angular-app 
 RUN ls -l /app
 
 # Vérification du contenu de /app/dist/angular-app
-RUN ls -l /app/dist/angular-app
+RUN ls -l */dist/*
 
 # Étape 2 : Utiliser une image de Nginx pour héberger l'application construite
 FROM nginx:alpine
