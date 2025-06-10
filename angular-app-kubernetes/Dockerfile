@@ -21,6 +21,8 @@ COPY . .
 RUN npx ng version
 RUN npx ng build --configuration=production --output-path=/app/dist/angular-app || { echo "❌ Build Angular a échoué"; exit 1; }
 
+RUN find /app -type d -name "dist"
+
 # Vérification du contenu du build
 #RUN ls -l /app/dist
 # Vérification du contenu de /app après le build
