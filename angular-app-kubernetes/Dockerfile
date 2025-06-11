@@ -11,7 +11,13 @@ COPY package*.json ./
 RUN npm install -g @angular/cli@16
 
 # Installer les dépendances (avec legacy pour les peerDeps si nécessaire)
-RUN npm install --legacy-peer-deps
+
+RUN rm -rf node_modules package-lock.json && \
+    npm install --legacy-peer-deps&& \
+    npm install typescript@2.9.2 --save-dev
+
+RUN npx tsc -v
+
 
 # Copier le reste du code
 COPY . .
