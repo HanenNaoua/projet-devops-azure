@@ -19,18 +19,17 @@ COPY . .
 # Construire l'application Angular
 #RUN npm run build -- --configuration=production --output-path=/app/dist/angular-app
 RUN npx ng version
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 RUN npx ng build --configuration=production --output-path=/app/dist/angular-app || { echo "❌ Build Angular a échoué"; exit 1; }
 
 RUN find /app -type d -name "dist"
-
 
 # Vérification du contenu du build
 #RUN ls -l /app/dist
 # Vérification du contenu de /app après le build
 RUN ls -l /app
-
-# Vérification du contenu de /app/dist/angular-app
-RUN ls -l */dist/*
 
 # Étape 2 : Utiliser une image de Nginx pour héberger l'application construite
 FROM nginx:alpine
