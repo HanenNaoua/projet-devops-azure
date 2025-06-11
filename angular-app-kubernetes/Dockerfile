@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installer Angular CLI (version compatible)
-RUN npm install -g @angular/cli@16
+#RUN npm install -g @angular/cli@16
 
 # Installer les dépendances (avec legacy pour les peerDeps si nécessaire)
 
@@ -26,7 +26,7 @@ COPY . .
 #RUN npm run build -- --configuration=production --output-path=/app/dist/angular-app
 RUN npx ng version
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
+#ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN npx ng build --configuration=production --output-path=/app/dist/angular-app || { echo "❌ Build Angular a échoué"; exit 1; }
 
