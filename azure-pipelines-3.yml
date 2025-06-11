@@ -1,0 +1,49 @@
+
+trigger:
+- projet-devops-azure
+
+pool:
+  name: Default
+
+steps:
+# 1 Checkout du code
+- checkout: self
+  clean: true
+  persistCredentials: true
+
+# 9 Connexion à Docker Hub pour tester la connexion
+- script: |
+    echo $(DOCKER_PASSWORD) | docker login -u $(DOCKER_USERNAME) --password-stdin
+  displayName: 'Docker login CLI'
+  
+- script: |
+    echo "Cleaning NPM cache and Docker cache..."
+    npm cache clean --force
+    docker builder prune -f
+  displayName: 'Clean NPM and Docker cache'
+
+# 10 Build & Push de l'image Docker vers Docker Hub
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush' # Commande pour construire et pousser l'image
+    containerRegistry: 'DockerHub' # Connexion Docker Hub
+    repository: 'hanen90/devops-azure' # Dépôt Docker Hub
+    Dockerfile: 'angular-app-kubernetes/Dockerfile' # Dockerfile situé à la racine
+    buildContext: 'angular-app-kubernetes'
+    tags: 'latest' # Tag de l'image
+  displayName: 'Build and Push Docker Image to Docker Hub'
+
+# 11 Vérification du contenu du dossier dist pour publication
+- script: |
+    echo "📂Vérification du contenu du dossier dist après build"
+    ls -l dist/angular-app # Vérifier le contenu du dossier angular-app après build
+  displayName: 'Verify dist folder content'
+
+#  12 Publier l'artefact de build
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish Build Artifact'
+
