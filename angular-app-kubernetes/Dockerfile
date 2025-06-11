@@ -14,7 +14,7 @@ RUN npm install -g @angular/cli@16
 
 RUN rm -rf node_modules package-lock.json && \
     npm install --legacy-peer-deps&& \
-    npm install typescript@2.9.2 --save-dev
+    npm install typescript@3.1.6 --save-dev
 
 RUN npx tsc -v
 
