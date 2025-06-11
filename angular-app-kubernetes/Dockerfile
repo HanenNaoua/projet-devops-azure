@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installer Angular CLI (version compatible)
-#RUN npm install -g @angular/cli@16
+RUN npm install -g @angular/cli@16
 
 # Installer les dépendances (avec legacy pour les peerDeps si nécessaire)
 RUN npm install --legacy-peer-deps
